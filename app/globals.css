@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: theme('colors.paper');
+  color: theme('colors.ink');
+}
+
+/* Selection matches accent */
+::selection {
+  background-color: theme('colors.accent');
+  color: theme('colors.paper');
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid theme('colors.accent');
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+/* Thin architect rule */
+.rule {
+  height: 1px;
+  background-color: theme('colors.hairline');
+}
+
+/* Placeholder photo block — solid tone + label, no stock imagery */
+.placeholder {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background-color: #E7E0D3;
+  background-image: linear-gradient(135deg, #E7E0D3 0%, #DCD3C2 100%);
+}
+.placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(theme('colors.hairline') 1px, transparent 1px),
+    linear-gradient(90deg, theme('colors.hairline') 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.12;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
