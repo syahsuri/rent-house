@@ -14,6 +14,12 @@ html {
 body {
   background-color: theme('colors.paper');
   color: theme('colors.ink');
+  /* Subtle paper: warm wash + faint fibre noise. Fixed so pages feel printed. */
+  background-image:
+    radial-gradient(120% 90% at 12% -10%, rgba(255, 255, 255, 0.5) 0%, transparent 55%),
+    radial-gradient(120% 90% at 100% 0%, rgba(180, 85, 45, 0.05) 0%, transparent 45%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  background-attachment: fixed, fixed, fixed;
 }
 
 /* Selection matches accent */
@@ -35,24 +41,83 @@ body {
   background-color: theme('colors.hairline');
 }
 
-/* Placeholder photo block — solid tone + label, no stock imagery */
+/* ── Book chrome ─────────────────────────────────────────────── */
+
+/* A single leaf of the book: warm paper page with a soft printed edge. */
+.page-leaf {
+  position: relative;
+  background-color: theme('colors.page');
+  box-shadow: theme('boxShadow.page');
+}
+/* Deckled/edge shading so a page reads as paper stacked on paper. */
+.page-leaf::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    inset 0 -22px 40px -30px rgba(43, 35, 32, 0.35);
+}
+
+/* Centre gutter — the shadowed fold where two pages meet. */
+.gutter {
+  position: absolute;
+  inset-block: 0;
+  left: 50%;
+  width: 46px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(43, 35, 32, 0.09) 46%,
+    rgba(43, 35, 32, 0.16) 50%,
+    rgba(43, 35, 32, 0.09) 54%,
+    transparent 100%
+  );
+}
+
+/* Perspective container so child page-turns have depth. */
+.book-scene {
+  perspective: 2200px;
+  perspective-origin: 50% 30%;
+}
+
+/* Bookmark ribbon hanging from the top edge of a spread. */
+.ribbon {
+  position: absolute;
+  top: 0;
+  width: 26px;
+  background: theme('colors.ribbon');
+  box-shadow: 0 8px 14px -8px rgba(43, 35, 32, 0.6);
+}
+.ribbon::after {
+  content: '';
+  position: absolute;
+  bottom: -11px;
+  left: 0;
+  border-width: 0 13px 12px 13px;
+  border-style: solid;
+  border-color: transparent transparent theme('colors.paper') transparent;
+}
+
+/* Placeholder photo block — book "plate" with a line-drawing illustration */
 .placeholder {
   position: relative;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
-  background-color: #E7E0D3;
-  background-image: linear-gradient(135deg, #E7E0D3 0%, #DCD3C2 100%);
+  background-color: #efe8d8;
+  background-image: linear-gradient(160deg, #f2ecdf 0%, #e6ddca 100%);
+  border: 1px solid theme('colors.hairline' / 40%);
 }
+/* Faint printed frame like an old plate illustration. */
 .placeholder::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(theme('colors.hairline') 1px, transparent 1px),
-    linear-gradient(90deg, theme('colors.hairline') 1px, transparent 1px);
-  background-size: 28px 28px;
-  opacity: 0.12;
+  inset: 10px;
+  pointer-events: none;
+  border: 1px solid theme('colors.hairline' / 45%);
 }
 
 @media (prefers-reduced-motion: reduce) {
