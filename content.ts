@@ -16,9 +16,15 @@ export const hero = {
   headline: ['Rumah 2 kamar.', 'Siap huni.'],
   // Lokasi singkat di atas headline
   eyebrow: 'Disewakan · Lhokseumawe',
+  // Teks kecil di "sampul buku" — kesan katalog/edisi.
+  cover: {
+    kicker: 'Katalog Rumah Sewa · Edisi Lhokseumawe',
+    volume: 'Vol. 01',
+    open: 'Buka buku',
+  },
   // Kalimat pengantar singkat di bawah lockup
   intro:
-    'Rumah tinggal di Jl. Merdeka, Lhokseumawe. Tenang, terang, dekat kampus. Cocok untuk keluarga kecil atau dua profesional.',
+    'Sebuah rumah tenang di Jl. Merdeka, Lhokseumawe — terang di siang hari, sejuk di malam hari, dan cuma semenit dari kampus. Buka halaman demi halaman, lalu bayangkan hari-hari Anda di dalamnya.',
   // Strip spesifikasi seperti legenda gambar teknik
   specStrip: [
     { label: 'Harga', value: 'Rp 15jt', unit: '/tahun' },
@@ -26,6 +32,45 @@ export const hero = {
     { label: 'Kamar', value: '2', unit: 'tidur' },
   ],
 };
+
+// Daftar isi "buku" — dipakai BookNav (TOC) & sebagai chrome tiap Spread.
+// no  : nomor bab (dua digit), pageNo: nomor halaman cetak di sudut.
+export const chapters: {
+  id: string;
+  no: string;
+  title: string;
+  pageNo: string;
+  lead: string;
+}[] = [
+  {
+    id: 'galeri',
+    no: '01',
+    title: 'Galeri',
+    pageNo: '2',
+    lead: 'Berkeliling sebentar sebelum datang langsung.',
+  },
+  {
+    id: 'spesifikasi',
+    no: '02',
+    title: 'Spesifikasi',
+    pageNo: '4',
+    lead: 'Angka-angka penting, tercatat rapi.',
+  },
+  {
+    id: 'lokasi',
+    no: '03',
+    title: 'Lokasi',
+    pageNo: '6',
+    lead: 'Dekat ke mana-mana, jauh dari bising.',
+  },
+  {
+    id: 'kontak',
+    no: '04',
+    title: 'Kontak',
+    pageNo: '8',
+    lead: 'Halaman terakhir — mari mengobrol.',
+  },
+];
 
 // Galeri: grid tak beraturan. span mengatur ukuran di grid 12 kolom.
 // crop: 'portrait' | 'landscape' | 'square' — hanya untuk rasio placeholder.
@@ -82,6 +127,6 @@ export const location = {
 
 export const cta = {
   heading: 'Mau lihat langsung?',
-  body: 'Chat saya di WhatsApp. Balas cepat, bisa atur jadwal survei kapan saja.',
+  body: 'Foto memang bagus, tapi tak sebanding melangkah masuk dan merasakannya sendiri. Chat saya di WhatsApp — balas cepat, jadwal survei bisa diatur kapan pun Anda sempat.',
   button: 'Chat lewat WhatsApp',
 };

@@ -13,6 +13,10 @@ const config: Config = {
         ink: '#2B2320',
         accent: '#B4552D',
         hairline: '#A99E8C',
+        // Book chrome
+        cover: '#3A2E27', // dark cloth-bound cover
+        page: '#FBF8F1', // slightly brighter than paper for lifted pages
+        ribbon: '#9A3E1F', // bookmark ribbon (deeper terracotta)
       },
       fontFamily: {
         display: ['var(--font-fraunces)', 'Georgia', 'serif'],
@@ -21,6 +25,10 @@ const config: Config = {
       },
       maxWidth: {
         page: '78rem',
+      },
+      boxShadow: {
+        page: '0 40px 80px -50px rgba(43,35,32,0.55)',
+        cover: '0 50px 100px -40px rgba(43,35,32,0.7)',
       },
     },
   },
